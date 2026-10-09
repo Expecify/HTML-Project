@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Northfield Surgery | Book an appointment online</title>
+    <link rel="stylesheet"
+      href="assets/css/style.css">
+
+</head>
+<body>
+    <header>
+        <p><strong>Northfield Surgery</strong></p>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="clinicians.html">Clinicians</a></li>
+                <li><a href="book.html">Book an appointment</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <h1>Book an Appointment</h1>
+        <p class="lead">To book an appointment at Northfield Surgery, please fill out the form below with your details and preferred appointment time. Our team will review your request and get back to you as soon as possible to confirm your appointment.</p>
+        <section>
+            <h2>Appointment Form</h2>
+            <form action="submit_appointment.php" method="post">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required><br><br>
+
+                <label for="NHS">NHS Number:</label>
+                <input type="text" id="NHS" name="NHS" required pattern="[0-9]{10}"><br><br>
+
+                <label for="dob">Date Of Birth:</label>
+                <input type="date" id="dob" name="dob" required><br><br>
+
+                <Label for="apptype">Appointment Type:</label>
+                <select id="apptype" name="apptype" required>
+                    <option value="">--Please choose an option--</option>
+                    <option value="general">General Consultation</option>
+                    <option value="specialist">Specialist Consultation</option>
+                    <option value="screening">Health Screening</option>
+                    <option value="vaccination">Vaccination</option>
+                </select><br><br>
+
+                <label for="reason">Reason for Appointment:</label>
+                <textarea id="reason" name="reason" rows="4" cols="50" required></textarea><br><br>
+
+                <label for="date">Preferred Date:</label>
+                <input type="date" id="date" name="date" required min="10/2/2026" max="10/2/2027"><br><br>
+
+                <label for="time">Preferred Time:</label>
+                <input type="time" id="time" name="time" required><br><br>
+
+                <label for="clinician">Select Clinician:</label>
+                <select id="clinician" name="clinician" required>
+                    <option value="">--Please choose an option--</option>
+                    <option value="dave_martinez">Dave Martinez</option>
+                    <option value="lucy_kushinada">Lucy Kushinada</option>
+                    <option value="rebecca">Rebecca</option>
+                    <option value="katsuo_tanaka">Katsuo Tanaka</option>
+                </select><br><br>
+
+                <label for="confirmDetail">Confirm Details:</label>
+                <input type="checkbox" id="confirmDetail" name="confirmDetail" required><br><br>
+
+                <label for="contact">Receive Emails from us:</label>
+                <input type="checkbox" id="contact" name="contact"><br><br>
+
+                <label for="interpreterReq">Do you require an interpreter?</label>
+                <input type="checkbox" id="interpreterReq" name="interpreterReq"><br><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Northfield Surgery, 14 Northfield Road, Plymouth, PL4 0AB</p>
+        <p>Telephone: <a href="tel:01752000000">01752000000</a></p>
+        <p>This is a ficitonal practice built as a student project. No real patient data is used.</p>
+    </footer>
+
+    
+</body>
+</html>
