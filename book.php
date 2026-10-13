@@ -58,7 +58,7 @@
                 <textarea id="reason" name="reason" rows="4" cols="50" required></textarea><br><br>
 
                 <label for="date">Preferred Date:</label>
-                <input type="date" id="date" name="date" required min=<?php date(Y-m-d); ?> max="<?php date(Y-m-d,strtotime('+1 year')); ?>"><br><br>
+                <input type="date" id="date" name="date" required min="<?php echo date(Y-m-d); ?>" max="<?php echo date(Y-m-d,strtotime('+1 year')); ?>"><br><br>
 
                 <label for="time">Preferred Time:</label>
                 <input type="time" id="time" name="time" required><br><br>
