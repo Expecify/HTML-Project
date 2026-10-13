@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Northfield Surgery | Book an appointment online</title>
     <link rel="stylesheet"
-      href="assets/css/style.css">
+        href="assets/css/style.css">
 
 </head>
 <body>
@@ -17,7 +17,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="clinicians.html">Clinicians</a></li>
-                <li><a href="book.html">Book an appointment</a></li>
+                <li><a href="book.php">Book an appointment</a></li>
                 <li><a href="register.html">Register</a></li>
             </ul>
         </nav>
@@ -58,7 +58,7 @@
                 <textarea id="reason" name="reason" rows="4" cols="50" required></textarea><br><br>
 
                 <label for="date">Preferred Date:</label>
-                <input type="date" id="date" name="date" required min="10/2/2026" max="10/2/2027"><br><br>
+                <input type="date" id="date" name="date" required min=<?php date(Y-m-d); ?> max="<?php date(Y-m-d,strtotime('+1 year')); ?>"><br><br>
 
                 <label for="time">Preferred Time:</label>
                 <input type="time" id="time" name="time" required><br><br>
