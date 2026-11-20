@@ -36,7 +36,12 @@ function getStatusMessage(date = new Date()) {
   if (isSurgeryOpen(date)) {
     return `${SURGERY_NAME} is open now. Call us on ${SURGERY_PHONE}.`;
   }
-  return `${SURGERY_NAME} is closed now. We open at ${formatTime(OPENING_HOUR * 60)}.`;
+  const day = date.getDay();
+  const beforeOpening = !isWeekend(date) && date.getHours() < OPENING_HOUR;
+  let when = 'tomorrow';
+  if (beforeOpening) when = 'today';
+  else if (day === 5 || day === 6 || day === 0) when = 'on Monday';
+  return `${SURGERY_NAME} is closed now. We open ${when} at ${formatTime(OPENING_HOUR * 60)}.`;
 }
 
 // slots

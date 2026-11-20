@@ -7,6 +7,7 @@
    ========================================================= */
  
 'use strict';
+console.log('data.js loaded');
  
 const CLINICIANS = [
   { id: 1, name: 'Dave Martinez',     role: 'GP',
@@ -18,7 +19,7 @@ const CLINICIANS = [
   { id: 3, name: 'Rebecca', role: 'Cardiologist',
     specialisms: ['Vaccinations', 'Wound care'],
     acceptingNew: true },
-  { id: 4, name: 'Katsuo Tanaka',         role: 'Mental Health Specialist',
+  { id: 4, name: 'Katsuo Tanaka',  role: 'Mental Health Specialist',
     specialisms: ['Counselling', 'Therapy', 'Medicine'],
     acceptingNew: true }
 ];
