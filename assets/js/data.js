@@ -25,7 +25,8 @@ const CLINICIANS = [
  
 const APPOINTMENT_TYPES = [
   { code: 'gp',     label: 'GP appointment',        minutes: 10 },
-  { code: 'nurse',  label: 'Nurse clinic',          minutes: 20 },
-  { code: 'bloods', label: 'Blood test',            minutes: 5  },
+  { code: 'derm',  label: 'Dermatology clinic',          minutes: 20 },
+  { code: 'cardio', label: 'Cardiology consultation',            minutes: 30 },
+  { code: 'mental',   label: 'Mental Health appointment', minutes: 15 },
   { code: 'phone',  label: 'Telephone consultation', minutes: 10 }
 ];
