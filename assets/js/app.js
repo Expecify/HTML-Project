@@ -45,40 +45,61 @@ function getStatusMessage(date = new Date()) {
 }
 
 // slots
-function generateSlots(startHour, endHour, minutesEach) {
+// Returns: [{ time: '08:00', available: true }, ...]
+function generateSlots(startHour, endHour, minutesEach, booked = []) {
   const slots = [];
   const end = Math.round(endHour * 60);
+
   for (let start = Math.round(startHour * 60); start + minutesEach <= end; start += minutesEach) {
+    const time = formatTime(start);
     slots.push({
-      start: formatTime(start),
-      end: formatTime(start + minutesEach),
+      time: time,
+      available: !booked.includes(time)
     });
   }
+
   return slots;
 }
 
-function isSlotBooked(slot, bookedSlots) {
-  return bookedSlots.includes(slot.start);
+function getAvailableSlots(slots) {
+  return slots.filter(slot => slot.available);
 }
-
-function getAvailableSlots(slots, bookedSlots) {
-  return slots.filter(slot => !isSlotBooked(slot, bookedSlots));
+function countAvailableSlots(slots) {
+  return getAvailableSlots(slots).length;
 }
-
-function countFreeSlots(slots, bookedSlots) {
-  return getAvailableSlots(slots, bookedSlots).length;
+function nextAvailableSlot(slots) {
+  const available = getAvailableSlots(slots);
+  return available.length > 0 ? available[0] : null;
+}
+function saveDraft(data) {
+  try {
+    localStorage.setItem('medbook:bookingDraft', JSON.stringify(data));
+    return true;
+  } catch (error) {
+    console.warn('Could not save draft:', error.message);
+    return false;
+  }
+}
+ 
+function loadDraft() {
+  try {
+    const raw = localStorage.getItem('medbook:bookingDraft');
+    return raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    console.warn('Could not read draft:', error.message);
+    return null;
+  }
 }
 
 // Run
 console.log(getStatusMessage());
 
-const allSlots  = generateSlots(OPENING_HOUR, CLOSING_HOUR, SLOT_MINUTES);
-const available = getAvailableSlots(allSlots, bookedSlots);
+const allSlots  = generateSlots(OPENING_HOUR, CLOSING_HOUR, SLOT_MINUTES, bookedSlots);
+const available = getAvailableSlots(allSlots);
 
-console.log('Available slots:', available.map(s => `${s.start} - ${s.end}`));
-console.log(`Free slots: ${countFreeSlots(allSlots, bookedSlots)} of ${allSlots.length}`);
-
-// Update status message every minute
-setInterval(() => {
-  console.log(getStatusMessage());
-}, 60000);
+console.table('Available slots:', available.map(s => s.time));
+console.table(`Free slots: ${countAvailableSlots(allSlots)} of ${allSlots.length}`);
+console.table('All slots:', allSlots.map(s => `${s.time} (${s.available ? 'free' : 'booked'})`));
+console.log('--------------------------');
+console.table(generateSlots(9, 12, 30, ['09:30', '11:00']));
+console.log('Next available slot:', nextAvailableSlot(allSlots) || 'No Slots Available Today');

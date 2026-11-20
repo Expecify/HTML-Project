@@ -31,3 +31,47 @@ const APPOINTMENT_TYPES = [
   { code: 'mental',   label: 'Mental Health appointment', minutes: 15 },
   { code: 'phone',  label: 'Telephone consultation', minutes: 10 }
 ];
+function getCliniciansByRole(role) {
+  return CLINICIANS.filter(c => c.role === role);
+}
+
+function acceptingNew() {
+    return CLINICIANS.filter(c => c.acceptingNew === true);
+}
+
+function findClinicianById(id) {
+  return CLINICIANS.find(c => c.id === id);
+}
+
+function getClinicianNames() {
+  return CLINICIANS.map(c => c.name);
+}
+
+function getAllSpecialisms() {
+  const specialisms = new Set();
+  CLINICIANS.forEach(c => c.specialisms.forEach(s => specialisms.add(s)));
+  return Array.from(specialisms);
+}
+
+function getTypeByCode(code) {
+  return APPOINTMENT_TYPES.find(t => t.code === code);
+}
+
+function getDurationByCode(code) {
+  const type = getTypeByCode(code);
+  return type ? type.minutes : null;
+}
+
+function countByRole(role) {
+  return CLINICIANS.filter(c => c.role === role).length;
+}
+
+console.log(getCliniciansByRole('GP'));
+console.log(acceptingNew());
+console.log(findClinicianById(99));
+console.table(findClinicianById(1));
+console.log(getClinicianNames());
+console.log(getAllSpecialisms());
+console.log(getTypeByCode('gp'));
+console.log(getDurationByCode('gp'));
+console.log(countByRole('GP'));
